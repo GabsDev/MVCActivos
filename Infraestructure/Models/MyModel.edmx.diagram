@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0f6b1937ca834d8d9e5df6ff64c4923b" Name="Diagram1">
+        <EntityTypeShape EntityType="MyModel.Activo" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyModel.Asegurador" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyModel.Depreciacion" Width="1.5" PointX="5.25" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyModel.Marca" Width="1.5" PointX="0.75" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyModel.Rol" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyModel.TipoActivo" Width="1.5" PointX="0.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyModel.Usuario" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="MyModel.Vendedor" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="MyModel.FK_Activo_Marca" ManuallyRouted="false" />
+        <AssociationConnector Association="MyModel.FK_Activo_TipoActivo" ManuallyRouted="false" />
+        <AssociationConnector Association="MyModel.FK_Depreciacion_Activo" ManuallyRouted="false" />
+        <AssociationConnector Association="MyModel.FK_Roles_Roles" ManuallyRouted="false" />
+        <AssociationConnector Association="MyModel.FK_Usuario_Rol" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

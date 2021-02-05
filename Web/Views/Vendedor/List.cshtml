@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Infraestructure.Models.Vendedor>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+
+@if (TempData["Message"] != null)
+{
+    string mensaje = @"<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+<span aria-hidden='true'>&times;</span> </button><strong>Error!</strong> " + TempData["Message"] + " </div>";
+@Html.Raw(mensaje);
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Correo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre_Contacto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Otros)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Direccion)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Telefono)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Correo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nombre_Contacto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Otros)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Cedula_Juridica }, new { @class = "btn  btn-primary btn-md " }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Cedula_Juridica }, new { @class = "btn btn-warning btn-md " }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Cedula_Juridica }, new { @class = "btn  btn-danger  btn-md " })
+            </td>
+        </tr>
+    }
+
+</table>

@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Web.ViewModel.ViewModelDetalleDepreciacion>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Activo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DepreciacionMensual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorActual)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ValorFinal)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumeroMes)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Activo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DepreciacionMensual)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValorActual)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ValorFinal)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumeroMes)
+        </td>
+    </tr>
+}
+
+</table>

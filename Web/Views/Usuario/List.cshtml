@@ -1,0 +1,75 @@
+﻿@model IEnumerable<Infraestructure.Models.Usuario>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Usuarios</h2>
+
+
+@if (TempData["Message"] != null)
+{
+    string mensaje = @"<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+<span aria-hidden='true'>&times;</span> </button><strong>Error!</strong> " + TempData["Message"] + " </div>";
+@Html.Raw(mensaje);
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Login)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Nombre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Apellidos)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Estado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Foto)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Rol.Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+<tr>
+    <td>
+        @Html.DisplayFor(modelItem => item.Login)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Nombre)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Apellidos)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Estado)
+    </td>
+    <td>
+        <input type="image" src="data:image/jpeg;charset=utf-8;base64,
+                   @Convert.ToBase64String(item.Foto)"
+               id="ImagenProducto" style="height:75px;width:75px">
+
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => item.Rol.Descripcion)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Login.Trim() }, new { @class = "btn  btn-primary btn-md " }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Login.Trim() }, new { @class = "btn btn-warning btn-md " }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Login.Trim() }, new { @class = "btn  btn-danger  btn-md " })
+    </td>
+</tr>
+    }
+
+</table>

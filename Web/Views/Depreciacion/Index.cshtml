@@ -1,0 +1,123 @@
+﻿@model Web.ViewModel.ViewModelParametroDepreciacion
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Depreciacion Activo</h2>
+
+@using (Ajax.BeginForm("AjaxCalculoDepreciacion", "Depreciacion", null, new AjaxOptions
+{
+
+    HttpMethod = "GET",
+    OnBegin = "onBeginSubmit",
+    OnComplete = "onCompleteSubmit",
+    OnFailure = "onFailureResult",
+    OnSuccess = "onSuccessResult",
+    UpdateTargetId = "resultado",
+    InsertionMode = InsertionMode.Replace
+}, new { id = "AjaxForm" }))
+{
+
+    @*Mensaje las cosas van mal*@
+    <div class="form-group">
+        <div id='ErrorAlert' class='alert alert-danger' style="display:none" role='alert'>
+            Se ha producito un error!
+        </div>
+    </div>
+
+
+    @*Mensaje todo correcto*@
+    <div id="ExitoAlert" class="alert alert-success" style="display:none" role="alert">
+        Datos enviados correctamente!
+    </div>
+
+
+    <div class="form-horizontal">
+
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+          <div class="form-group">
+            @Html.LabelFor(model => model.filtro, "Activos", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.filtro, new SelectList(ViewBag.ListaActivos, "IdActivo", "Modelo"), new { @class = "form-control" })
+
+                @Html.ValidationMessageFor(model => model.filtro, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="SubmitBtn" type="submit" value="Calcular" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+
+    @*Muestra el efecto de la imagen*@
+    <img id="AjaxLoader" class="center-block" alt="Enviando ..." style="height:100px;width:100px; display:none" src="~/Images/loading.gif" />
+
+    @*Muestra un resultado*@
+    <div id="resultado" />
+
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryajax")
+
+    <!-- AL COMENZAR EL SUBMIT -->
+    <script>
+        var onBeginSubmit = function () {
+            // Mostramos el Ajax Loader
+            $("#AjaxLoader").show("slow");
+
+            // Deshabilitamos el botón de Submit
+            $("#SubmitBtn").prop("disabled", true);
+        };
+    </script>
+
+    <!-- AL FINALIZAR EL SUBMIT -->
+    <script>
+        var onCompleteSubmit = function () {
+            
+
+        };
+    </script>
+
+    <!-- SE EJECUTA SI TODO FUE BIEN -->
+    <script>
+        var onSuccessResult = function (msg) {
+            // Escondemos el Ajax Loader
+            $("#AjaxLoader").hide("slow");
+
+            // Habilitamos el botón de Submit
+            $("#SubmitBtn").prop("disabled", false);
+
+            // Mostrar el mensaje
+            $("#ExitoAlert").show("slow").delay(1000).hide("slow");
+        };
+    </script>
+
+    <!-- SE EJECUTA SI SE PRODUJO UN ERROR -->
+    <script>
+        var onFailureResult = function (err) {
+           
+
+            $("#ErrorAlert").show("slow").delay(1000).hide("slow");
+
+            // Escondemos el Ajax Loader
+            $("#AjaxLoader").hide("slow");
+
+            // Habilitamos el botón de Submit
+            $("#SubmitBtn").prop("disabled", false);
+        };
+    </script>
+
+}

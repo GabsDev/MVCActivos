@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Filter";
+}
+
+<h2>Buscar Usuarios</h2>
+
+
+@using (Ajax.BeginForm("AjaxFilterByName", "Usuario", null, new AjaxOptions
+{
+
+    HttpMethod = "GET",
+    OnBegin = "onBeginSubmit",
+    OnComplete = "onCompleteSubmit",
+    OnFailure = "onFailureResult",
+    OnSuccess = "onSuccessResult",
+    UpdateTargetId = "resultado",
+    InsertionMode = InsertionMode.Replace
+}, new { id = "AjaxForm" }))
+{
+
+    @*Mensaje las cosas van mal*@
+    <div class="form-group">
+        <div id='ErrorAlert' class='alert alert-danger' style="display:none" role='alert'>
+            Se ha producito un error!
+        </div>
+    </div>
+
+
+    @*Mensaje todo correcto*@
+    <div id="ExitoAlert" class="alert alert-success" style="display:none" role="alert">
+        Datos enviados correctamente!
+    </div>
+
+    <form class="form-inline">  
+        <div class="form-group">
+            @Html.Label("Filtros")
+            @Html.TextBox("filtro", "", new { @class = "form-control", placeholder = "Ingrese las iniciales" })
+        </div>
+        <button type="submit" class="btn btn-default">Buscar Usuarios</button>
+    </form>
+
+
+    @*Muestra el efecto de la imagen*@
+    <img id="AjaxLoader" class="center-block" alt="Enviando ..." style="height:100px;width:100px; display:none" src="~/Images/loading.gif" />
+
+    @*Muestra un resultado*@
+    <div id="resultado" />
+
+
+
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/bundles/jqueryajax")
+
+    <!-- AL COMENZAR EL SUBMIT -->
+    <script>
+        var onBeginSubmit = function () {
+            // Mostramos el Ajax Loader
+            $("#AjaxLoader").show("slow");
+
+            // Deshabilitamos el botón de Submit
+            $("#SubmitBtn").prop("disabled", true);
+        };
+    </script>
+
+    <!-- AL FINALIZAR EL SUBMIT -->
+    <script>
+        var onCompleteSubmit = function () {
+
+        };
+    </script>
+
+    <!-- SE EJECUTA SI TODO FUE BIEN -->
+    <script>
+        var onSuccessResult = function (msg) {
+
+            // Escondemos el Ajax Loader
+            $("#AjaxLoader").hide("slow");
+
+            // Habilitamos el botón de Submit
+            $("#SubmitBtn").prop("disabled", false);
+
+            // Mostrar el mensaje
+            $("#ExitoAlert").show("slow").delay(1000).hide("slow");
+        };
+    </script>
+
+    <!-- SE EJECUTA SI SE PRODUJO UN ERROR -->
+    <script>
+        var onFailureResult = function (err) {
+            // Mostramos un mensaje de error.
+
+            $("#ErrorAlert").show("slow").delay(1000).hide("slow");
+
+            // Escondemos el Ajax Loader
+            $("#AjaxLoader").hide("slow");
+
+            // Habilitamos el botón de Submit
+            $("#SubmitBtn").prop("disabled", false);
+        };
+    </script>
+
+}

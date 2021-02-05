@@ -1,0 +1,66 @@
+﻿@model Infraestructure.Models.Vendedor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+@if (TempData["Message"] != null)
+{
+    string mensaje = @"<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+<span aria-hidden='true'>&times;</span> </button>
+<strong>Error!</strong> " + TempData["Message"] + " </div>";
+@Html.Raw(mensaje);
+}
+
+<div>
+    <h4>Vendedor</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Direccion)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Direccion)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telefono)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telefono)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Correo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Correo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Nombre_Contacto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Nombre_Contacto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Otros)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Otros)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Cedula_Juridica }, new { @class = "btn  btn-primary btn-md " }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

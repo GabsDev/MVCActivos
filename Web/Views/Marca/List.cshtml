@@ -1,0 +1,41 @@
+﻿@model IEnumerable<Infraestructure.Models.Marca>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Marca</h2>
+
+@if (TempData["Message"] != null)
+{
+    string mensaje = @"<div class='alert alert-danger alert-dismissible' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'>
+<span aria-hidden='true'>&times;</span> </button><strong>Error!</strong> " + TempData["Message"] + " </div>";
+@Html.Raw(mensaje);
+}
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Descripcion)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Descripcion)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.IdMarca }, new { @class = "btn  btn-primary btn-md " }) |
+                @Html.ActionLink("Details", "Details", new { id = item.IdMarca }, new { @class = "btn  btn-warning btn-md " }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.IdMarca }, new { @class = "btn  btn-danger btn-md " })
+            </td>
+        </tr>
+    }
+
+</table>
